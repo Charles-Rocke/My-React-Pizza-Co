@@ -118,19 +118,19 @@ function Menu() {
 }
 
 // Pizza component
-function Pizza(props) {
-  console.log(props);
+function Pizza({ pizzaObject }) {
+  console.log(pizzaObject);
   // if a pizza is sold out return an empty object
-  // if (props.pizzaObject.soldOut) {
+  // if (.pizzaObject.soldOut) {
   //   return null;
   // }
   return (
     <li className="pizza">
-      <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+      <img src={pizzaObject.photoName} alt={pizzaObject.name} />
       <div>
-        <h3>{props.pizzaObject.name}</h3>
-        <p>{props.pizzaObject.ingredients}</p>
-        <span>${props.pizzaObject.price + 3}</span>
+        <h3>{pizzaObject.name}</h3>
+        <p>{pizzaObject.ingredients}</p>
+        <span>${pizzaObject.price + 3}</span>
       </div>
     </li>
   );
@@ -139,7 +139,7 @@ function Pizza(props) {
 // Footer component
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 20;
+  const openHour = 12;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
@@ -162,19 +162,25 @@ function Footer() {
     <footer className="footer">
       {/* conditionally render if open */}
       {isOpen ? (
-        <div className="order">
-          <p>
-            We're currently open until {closeHour}:00. Come visit us or order
-            online.
-          </p>
-          <button className="btn">Order</button>
-        </div>
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <p>
           We're happy to welcome you between {openHour}:00 and {closeHour}:00.
         </p>
       )}
     </footer>
+  );
+}
+
+function Order({ closeHour, openHour }) {
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour} until {closeHour}:00. Come visit us or order
+        online.
+      </p>
+      <button className="btn">Order</button>
+    </div>
   );
 }
 
