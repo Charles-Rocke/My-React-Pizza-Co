@@ -91,12 +91,18 @@ function Menu() {
       <h2>Our Menu</h2>
       {/* if pizzas exist return the list, else return nothing */}
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {/* render each pizza object in the data */}
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObject={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        <>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All are
+            stone oven baked, organic, and delicious.
+          </p>
+          <ul className="pizzas">
+            {/* render each pizza object in the data */}
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObject={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We're working on our menu. Please come back later :)</p>
       )}
